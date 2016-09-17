@@ -1,5 +1,6 @@
 #base gameobject class
 class GameObject:
+    #tags
     PLAYER = 1
     ASTEROID = 2
     BULLET = 3
@@ -90,6 +91,17 @@ class Player(GameObject):
     def __init__(self, position, speed, velocity, size):
         GameObject.__init__(self, position, speed, 
             velocity, size, GameObject.PLAYER)
+        self.lives = 3
+        self.magazine = 5
+
+    def isAlive(self):
+        if(self.lives <= 0):
+            return False
+        return True
+
+    def loseLife(self):
+        # check time limit to avoid getting hit twice straight away
+        self.lives -= 1
 
 class Asteroid(GameObject):
 
@@ -113,6 +125,11 @@ class Bullet(GameObject):
 
     def move(self):
         self.y += (self.velY * self.speedY)
+
+    def outOfBounds(self):
+        if(self.y < 0):
+            return True
+        return False
 
 
 

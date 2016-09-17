@@ -18,6 +18,8 @@ SPRITEDIR = './Images/'
 #images
 SPRITEMAP = {}
 
+#initialise the display by creating the surface and loading the sprites into
+#a map
 def initialise(screenSize):
     if(screenSize != None):
         displaySurface = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
@@ -38,6 +40,7 @@ def update(window, gameObjects):
     #update graphics to screen
     pygame.display.update()
 
+#load a sprite into the sprite map
 def loadSprite(spriteName, key, logicSize):
     sprite = pygame.image.load((SPRITEDIR + spriteName)).convert()
     if(logicSize != None):

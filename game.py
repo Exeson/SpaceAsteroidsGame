@@ -10,9 +10,10 @@ fpsClock = pygame.time.Clock()
 pygame.init()
 objectmanager = ObjectManager()
 window = display.initialise((None, None))
+gameOver = False
 
 # game loop
-while True:
+while(gameOver == False):
     #test for quit event
     for event in pygame.event.get():
         controls.handleEvent(event, objectmanager)
@@ -20,4 +21,5 @@ while True:
     objectmanager.update()
     #update graphics
     display.update(window, objectmanager.gameObjects)
+    gameOver = objectmanager.gameOver()
     fpsClock.tick(FPS)

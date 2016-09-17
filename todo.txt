@@ -1,15 +1,10 @@
 ToDo:
 
 gameobject:
-    - update bounds checking to allow for screen resizing and sprite size changes
 
 Display:
-    - create correct initialisation sequence
-    - allow display to load it's own sprites which will remove redundant info in game.py
 
 ObjectManager:
-    - split spawnasteroid() into two functiosn, one to test if a new asteroid is needed and one to actually spawn it?
-    - turn object detection into one itteration by iterrating over asteroids to reduce overhead
 
 Controls:
     - find a proper home for this, and perhaps split the handleEvent() function into a few smaller ones 

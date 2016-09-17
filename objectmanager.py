@@ -29,7 +29,7 @@ class ObjectManager:
         self.asteroids = list()
         self.bullets = list()
         self.player = Player(PLAYERSTART, PLAYERSPEED, (0, 0), PLAYERSIZE)
-        self.gameObjects.append(self.player)
+        #self.gameObjects.append(self.player)
         self.ticksSinceAsteroidSpawn = 0
         self.ticksSinceDifficultyIncrease = 0
 
@@ -56,6 +56,8 @@ class ObjectManager:
     def updateBullets(self):
         for bullet in self.bullets:
             bullet.move()
+            if(bullet.outOfBounds() == True):
+                self.bullets.remove(bullet)
 
     def updatePlayer(self):
         self.player.move()
@@ -64,8 +66,8 @@ class ObjectManager:
         for asteroid in self.asteroids:
             # check collison with player
             if(self.player.testCollision(asteroid)):
-                print('player hit')
-                #gameover
+                self.player.loseLife()
+                self.asteroids.remove(asteroid)
             # check collision with bullets
             for bullet in self.bullets:
                 if(bullet.testCollision(asteroid)):
@@ -101,3 +103,9 @@ class ObjectManager:
             (self.player.y - self.player.height))
         bullet = Bullet(position, BULLETSPEED, BULLETVELOCITY, BULLETSIZE)
         self.bullets.append(bullet)
+
+    def gameOver(self):
+        if(self.player.isAlive() == False):
+            return True
+        return False
+
