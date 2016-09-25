@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import pygame, display, controls
 from pygame.locals import *
 from objectmanager import ObjectManager

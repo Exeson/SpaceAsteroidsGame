@@ -2,13 +2,13 @@ import random
 from gameobject import Player, Asteroid, Bullet
 
 #player
-PLAYERSIZE = (0.015, 0.03)
+PLAYERSIZE = (0.03, 0.06)
 PLAYERSTART = (0.5, 1)
 PLAYERSPEED = (0.01, 0.01)
 
 #asteroids
 ASTEROIDSPEED = (0, 0.005)
-ASTEROIDSIZE = (0.01, 0.01)
+ASTEROIDSIZE = (0.02, 0.02)
 ASTEROIDVELOCITY = (0, 1)
 
 #bullets
