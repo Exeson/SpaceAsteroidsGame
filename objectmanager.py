@@ -60,7 +60,7 @@ class ObjectManager:
                 self.bullets.remove(bullet)
 
     def updatePlayer(self):
-        self.player.move()
+        self.player.update()
 
     def performCollisionDetection(self):
         for asteroid in self.asteroids:
@@ -99,10 +99,11 @@ class ObjectManager:
             self.ticksSinceDifficultyIncrease = 0
 
     def spawnBullet(self):
-        position = ((self.player.x + (self.player.width/2)),
-            (self.player.y - self.player.height))
-        bullet = Bullet(position, BULLETSPEED, BULLETVELOCITY, BULLETSIZE)
-        self.bullets.append(bullet)
+        if(self.player.fireBullet() == True):
+            position = ((self.player.x + (self.player.width/2)),
+                (self.player.y - self.player.height))
+            bullet = Bullet(position, BULLETSPEED, BULLETVELOCITY, BULLETSIZE)
+            self.bullets.append(bullet)
 
     def gameOver(self):
         if(self.player.isAlive() == False):

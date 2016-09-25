@@ -87,12 +87,18 @@ class GameObject:
         return False
 
 class Player(GameObject):
+    # relod time of 2 seconds
+    RELOADTIME = 120
+    NUMLIVES = 3
+    MAGCAPACITY = 5
 
     def __init__(self, position, speed, velocity, size):
         GameObject.__init__(self, position, speed, 
             velocity, size, GameObject.PLAYER)
-        self.lives = 3
-        self.magazine = 5
+        self.lives = self.NUMLIVES
+        self.magazine = self.MAGCAPACITY
+        self.reloading = False;
+        self.reloadTimer = 0;
 
     def isAlive(self):
         if(self.lives <= 0):
@@ -102,6 +108,28 @@ class Player(GameObject):
     def loseLife(self):
         # check time limit to avoid getting hit twice straight away
         self.lives -= 1
+
+    def fireBullet(self):
+        if(self.magazine > 0):
+            self.magazine -= 1;
+            if(self.magazine == 0):
+                self.reloading = True
+            return True
+        else:
+            return False
+
+    def update(self):
+        self.move()
+        self.reload()
+
+    def reload(self):
+        if(self.reloadTimer >= self.RELOADTIME):
+            self.reloading = False
+            self.reloadTimer = 0
+            self.magazine = self.MAGCAPACITY
+        if(self.reloading == True):
+            self.reloadTimer += 1;
+
 
 class Asteroid(GameObject):
 
